@@ -10,18 +10,18 @@ else if (process.argv.length > 3) {
     console.log('if address include space please wrap them inside quotes')
 }
 else {
-    geocode(address, (error, data) => {
+    geocode(address, (error, {latitude, longitude, location} = {}) => {
         if(error) {
             console.log('Error', error)
             return
         }
     
-        forecast(data.latitude, data.longitude, (error, forecastData) => {
+        forecast(latitude, longitude, (error, forecastData) => {
             if(error) {
                 console.log('Error', error)
                 return
             }
-            console.log(data.location)
+            console.log(location)
             console.log(forecastData)
           })
     })
